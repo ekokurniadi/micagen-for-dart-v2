@@ -44,6 +44,7 @@ func (h *generatorv2) GenerateFeature() {
 	h.project.OutputPath = "package:" + packageName
 
 	GenerateFeatureName(h.project.FeatureName)
+	GenerateEntity(h.project)
 	if h.project.GeneratorOption.GenerateEntity {
 		GenerateEntity(h.project)
 	}

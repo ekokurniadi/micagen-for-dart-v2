@@ -68,6 +68,13 @@ func writeNewFileUseCase(usecase schemas.UseCase, p schemas.Project) (string, er
 		return "", err
 	}
 
+	if p.Config.UseInjectable {
+		_, err = file.WriteString("import \"package:injectable/injectable.dart\";\n")
+		if isError(err) {
+			return "", err
+		}
+	}
+
 	//Write some text line-by-line to file.
 	_, err = file.WriteString("import \"" + p.OutputPath + "/core/error/failures.dart\";\n")
 	if isError(err) {

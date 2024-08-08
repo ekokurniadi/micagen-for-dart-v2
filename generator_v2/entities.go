@@ -59,10 +59,7 @@ func writeFileEntity(entity schemas.Project) (string, error) {
 		if isError(err) {
 			return "", err
 		}
-		_, err = file.WriteString("part \"" + strings.ToLower(entity.Entity.EntityName) + "_entity.codegen.g" + ".dart\";\n\n")
-		if isError(err) {
-			return "", err
-		}
+
 		_, err = file.WriteString("@freezed\n")
 		if isError(err) {
 			return "", err
@@ -94,11 +91,6 @@ func writeFileEntity(entity schemas.Project) (string, error) {
 		}
 
 		_, err = file.WriteString("})=" + "_" + strings.Join(abstractName, "") + "Entity;" + " \n\n")
-		if isError(err) {
-			return "", err
-		}
-
-		_, err = file.WriteString("\nfactory " + strings.Join(abstractName, "") + "Entity.fromJson(Map<String,dynamic>json) => _$" + strings.Join(abstractName, "") + "EntityFromJson(json);\n\n")
 		if isError(err) {
 			return "", err
 		}

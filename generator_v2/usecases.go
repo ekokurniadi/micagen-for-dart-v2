@@ -62,11 +62,6 @@ func writeNewFileUseCase(usecase schemas.UseCase, p schemas.Project) (string, er
 	if isError(err) {
 		return "", err
 	}
-	//Write some text line-by-line to file.
-	_, err = file.WriteString("import \"package:equatable/equatable.dart\";\n")
-	if isError(err) {
-		return "", err
-	}
 
 	if p.Config.UseInjectable {
 		_, err = file.WriteString("import \"package:injectable/injectable.dart\";\n")
@@ -81,7 +76,7 @@ func writeNewFileUseCase(usecase schemas.UseCase, p schemas.Project) (string, er
 		return "", err
 	}
 	//Write some text line-by-line to file.
-	_, err = file.WriteString("import \"" + p.OutputPath + "/core/usecases/usecases.dart\";\n")
+	_, err = file.WriteString("import \"" + p.OutputPath + "/core/usecases/usecase.dart\";\n")
 	if isError(err) {
 		return "", err
 	}

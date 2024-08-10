@@ -141,7 +141,7 @@ func writeNewFileUseCase(usecase schemas.UseCase, p schemas.Project) (string, er
 		return "", err
 	}
 
-	_, err = file.WriteString("\t" + usesCaseName + "UseCase({\n")
+	_, err = file.WriteString("\tconst " + usesCaseName + "UseCase({\n")
 	if isError(err) {
 		return "", err
 	}

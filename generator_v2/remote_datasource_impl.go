@@ -42,6 +42,11 @@ func writeFileRemoteDataSourceImpl(project schemas.Project) (string, error) {
 	if isError(err) {
 		return "", err
 	}
+	//Write some text line-by-line to file.
+	_, err = file.WriteString("import \"package:dio/dio.dart\";\n")
+	if isError(err) {
+		return "", err
+	}
 
 	if project.Config.UseInjectable {
 		_, err = file.WriteString("import \"package:injectable/injectable.dart\";\n")
@@ -86,6 +91,15 @@ func writeFileRemoteDataSourceImpl(project schemas.Project) (string, error) {
 
 	//Write some text line-by-line to file.
 	_, err = file.WriteString("class " + strings.Join(abstractName, "") + "RemoteDataSourceImpl implements " + strings.Join(abstractName, "") + "RemoteDataSource {\n")
+	if isError(err) {
+		return "", err
+	}
+
+	_, err = file.WriteString("\tconst " + strings.Join(abstractName, "") + "RemoteDataSourceImpl(this._dio);\n")
+	if isError(err) {
+		return "", err
+	}
+	_, err = file.WriteString("\tfinal Dio _dio;\n")
 	if isError(err) {
 		return "", err
 	}

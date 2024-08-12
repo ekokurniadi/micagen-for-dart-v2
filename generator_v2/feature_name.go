@@ -38,6 +38,7 @@ func writeFolder(featureName string) error {
 	var dataSourceChildFolder = []string{"local", "remote"}
 	var domainChildFolder = []string{"entities", "repositories", "usecases"}
 	var presentationChildFolder = []string{"bloc", "pages", "widgets"}
+	var pagesChildFolder = []string{"tablet", "mobile"}
 
 	core := filepath.Join("./", "core")
 	os.MkdirAll(core, 0755)
@@ -71,6 +72,11 @@ func writeFolder(featureName string) error {
 			os.MkdirAll(presentationChildFolderPath, 0755)
 
 		}
+
+	}
+	for x := 0; x < len(pagesChildFolder); x++ {
+		pagesChildFolderPath := filepath.Join(path+"/"+presentationChildFolder[1], pagesChildFolder[x])
+		os.MkdirAll(pagesChildFolderPath, 0755)
 	}
 
 	return nil
